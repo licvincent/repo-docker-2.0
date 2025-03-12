@@ -61,12 +61,14 @@ try:
         ])
     ])
 
-#    if __name__ == '__main__':
-#        app.run_server(debug=True)
+  
 
     if __name__ == '__main__':
+         
         port = int(os.getenv("PORT", 8080))
-        app.run_server(host='0.0.0.0', port=port, debug=False)        
+        app.run_server(host='0.0.0.0', port=port, debug=False)
 
 except Exception as e:
-    print(f"Error al cargar el archivo desde la URL: {e}")
+    #print(f"Error al cargar el archivo desde la URL: {e}")
+    print(f"Error inesperado: {e}")
+    SystemExit.exit(1)
