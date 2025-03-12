@@ -18,5 +18,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8080
 
 # Comando para ejecutar la aplicación
-CMD ["python", "app.py"] # Reemplaza app.py con el nombre de tu script
+
 CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app:server"]
