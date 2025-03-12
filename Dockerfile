@@ -14,7 +14,6 @@ RUN pip install --upgrade pip
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-
 # Expone el puerto en el que la aplicación escuchará
 EXPOSE 8080
 
