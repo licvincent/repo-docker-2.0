@@ -1,16 +1,24 @@
+import logging
 import pandas as pd
 import plotly.express as px
 import dash
 from dash import dcc, html
 import os
+import sys
 
-# URL del archivo CSV (asegúrate de que esta URL sea correcta)
+# Configuración del logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+# URL del archivo CSV
 url = 'https://raw.githubusercontent.com/licvincent/Hipertension_Arterial_Mexico/refs/heads/main/Hipertension_Arterial_Mexico.csv'
 
 try:
+    logger.info('Iniciando carga de datos desde la URL: %s', url)
     df = pd.read_csv(url)
-    print(df.head())
-    print(df.describe())
+    logger.info('Datos cargados correctamente')
+    logger.debug('Primeras filas del DataFrame: %s', df.head())
+    logger.debug('Estadísticas del DataFrame: %s', df.describe())
 
     # Creación de Grupos de Edad
     def categorize_age(edad):
@@ -69,6 +77,6 @@ try:
         app.run_server(host='0.0.0.0', port=port, debug=False)
 
 except Exception as e:
-    #print(f"Error al cargar el archivo desde la URL: {e}")
-    print(f"Error inesperado: {e}")
-    SystemExit.exit(1)
+    logger.error('Error inesperado: %s', e)
+    sys.exit(1)
+
